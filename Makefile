@@ -51,14 +51,22 @@ clean c :
 	@rm -rf $(BIN_DIR)/$(APP)
 
 init i :
-	@echo Criando o diretorio $(SRC_DIR)
-	@mkdir $(SRC_DIR)
-	@echo Criando o diretorio $(INC_DIR)
-	@mkdir $(INC_DIR)
-	@echo Criando o diretorio $(OBJ_DIR)
-	@mkdir $(OBJ_DIR)
-	@echo Criando o diretorio $(BIN_DIR)
-	@mkdir $(BIN_DIR)
+	@ if test ! -d $(SRC_DIR) ; then \
+		echo Criando o diretorio $(SRC_DIR) ; \
+		mkdir $(SRC_DIR) ; \
+	fi;
+	@ if test ! -d $(INC_DIR) ; then \
+		echo Criando o diretorio $(INC_DIR) ; \
+		mkdir $(INC_DIR) ; \
+	fi;
+	@ if test ! -d $(OBJ_DIR) ; then \
+		echo Criando o diretorio $(OBJ_DIR) ; \
+		mkdir $(OBJ_DIR) ; \
+	fi;
+	@ if test ! -d $(BIN_DIR) ; then \
+		echo Criando o diretorio $(BIN_DIR) ; \
+		mkdir $(BIN_DIR) ; \
+	fi;
 
 debug d :
 	@echo Executando $(BIN_DIR)/$(APP) em modo debug
