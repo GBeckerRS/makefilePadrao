@@ -2,15 +2,14 @@
 #Makfile padrão basico para projetos em C/C++
 #
 #Flags:
-#	CC*: Compilador utilizado
+#	CC: Compilador utilizado
 #	CFLAGS: Flags do compilador
 #	LFLAGS: Flags do linker
-#	APP*: Nome do aplicativo
+#	APP: Nome do aplicativo
 #	FONTES*: Lista de arquivos fontes do projeto
-#* = Preenchimento obrigatório
 #
 #	~GBecker
-#	02/01/2015
+#	21/09/2015
 #=====================================================
 CC =
 CFLAGS =
@@ -29,6 +28,7 @@ OBJETOS = $(TEMP:.$(EXT)=.o)					# Arquivos Objeto
 #=====================================================
 
 $(APP) : $(OBJETOS)
+	@clear
 	@echo Linking...
 	@$(CC) -o $(BIN_DIR)/$(APP) $(OBJETOS) $(LFLAGS)
 	@echo Built successfully!
@@ -38,6 +38,8 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/%.$(EXT)
 	@$(CC) $(CFLAGS) -I$(INC_DIR) -o $@ -c $<
 
 build b : $(OBJETOS)
+
+rebuild rb : clean $(APP)
 
 list l : 
 	@echo Arquivos fonte do projeto:
@@ -68,7 +70,7 @@ init i :
 		mkdir $(BIN_DIR) ; \
 	fi;
 
-debug d :
+debug d : rebuild
 	@echo Executando $(BIN_DIR)/$(APP) em modo debug
 	@gdb $(BIN_DIR)/$(APP)
 
