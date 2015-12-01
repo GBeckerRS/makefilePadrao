@@ -28,7 +28,6 @@ OBJETOS = $(TEMP:.$(EXT)=.o)					# Arquivos Objeto
 #=====================================================
 
 $(APP) : $(OBJETOS)
-	@clear
 	@echo Linking...
 	@$(CC) -o $(BIN_DIR)/$(APP) $(OBJETOS) $(LFLAGS)
 	@echo Built successfully!
